@@ -1,1 +1,2 @@
-﻿
+﻿namespace MyNamespace;
+
