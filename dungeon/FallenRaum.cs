@@ -61,6 +61,7 @@ public class FallenRaum : ARaum
             case 9:
                 Console.WriteLine("Ein Holzklotz schwingt gegen deinen Kopf!");
                 Console.WriteLine("Du nimmst 50 Schaden");
+                held.Health -= 50;
                 break;
             case 10:
                 Console.WriteLine("Der ganze Raum wird mit Rauch gefühlt.");
