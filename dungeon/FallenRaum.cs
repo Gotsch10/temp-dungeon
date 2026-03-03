@@ -18,7 +18,7 @@ public class FallenRaum : ARaum
         {
             case 1:
                 Console.WriteLine("Du bist durch eine Falltür gefallen!!");
-                Console.WriteLine("Es waren Stacheln unten. Du bist ein Kebap.");
+                Console.WriteLine("Es waren Stacheln unten. Du bist jetzt ein Kebap.");
                 held.Health = 0;
                 break;
             case 2:

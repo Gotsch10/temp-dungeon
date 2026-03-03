@@ -17,6 +17,8 @@ public class Program
 
         while (!welt.Zielerreicht && held.Health > 0)
         {
+            Thread.Sleep(4000);
+            Console.Clear();
             Console.WriteLine();
             Console.WriteLine($"HP: {held.Health} | Bewegung: W (Norden), A (Westen), S (Süden), D (Osten) | Q = Quit");
             Console.Write(">> ");
