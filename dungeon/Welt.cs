@@ -61,8 +61,5 @@ public class Welt
         
         D.Osten = G;
         G.Westen = D;
-
-      
-      
     }
 }
