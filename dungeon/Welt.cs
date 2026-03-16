@@ -29,7 +29,7 @@ public class Welt
         }
     }
 
-    public void ZeigeKarte(Held held)
+    public void ZeigeKarte(Held held, bool zielAnzeigen = false)
     {
         for (int y = 0; y < _karte.GetLength(0); y++)
         {
@@ -40,6 +40,12 @@ public class Welt
                 if (raum == held.Standort)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write($"{raum.Symbol} ");
+                    Console.ResetColor();
+                }
+                else if (zielAnzeigen && raum is ZielRaum)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write($"{raum.Symbol} ");
                     Console.ResetColor();
                 }

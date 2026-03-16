@@ -18,7 +18,6 @@ public class GameController
     {
         while (!_welt.Zielerreicht && _held.Health > 0)
         {
-            Thread.Sleep(3000);
             Console.Clear();
 
             Console.WriteLine();
@@ -32,10 +31,7 @@ public class GameController
             var key = Console.ReadKey(true).Key;
 
             if (key == ConsoleKey.Q)
-            {
-                Environment.Exit(0);
-            }
-              
+                break;
 
             ARaum next = null;
 
@@ -59,20 +55,32 @@ public class GameController
             if (next == null)
             {
                 Console.WriteLine("Dort kannst du nicht hin.");
+                Thread.Sleep(1000);
                 continue;
             }
 
             next.Betreten(_held, _welt);
+
+            if (!_welt.Zielerreicht && _held.Health > 0)
+            {
+                Thread.Sleep(2000);
+            }
         }
 
-        Thread.Sleep(4000);
         Console.Clear();
 
         Console.WriteLine();
         Console.WriteLine($"HP: {_held.Health} | Bewegung: W (Norden), A (Westen), S (Süden), D (Osten) | Q = Quit");
         Console.WriteLine();
 
-        _welt.ZeigeKarte(_held);
+        if (_held.Health <= 0 && !_welt.Zielerreicht)
+        {
+            _welt.ZeigeKarte(_held, true);
+        }
+        else
+        {
+            _welt.ZeigeKarte(_held);
+        }
 
         if (_welt.Zielerreicht)
             Console.WriteLine("Spiel beendet: Ziel erreicht!");
