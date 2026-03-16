@@ -2,6 +2,8 @@
 
 public class FallenRaum : ARaum
 {
+    public override char Symbol => 'F';
+
     public virtual int Falle()
     {
         Random rnd = new Random();
@@ -12,6 +14,7 @@ public class FallenRaum : ARaum
     public override void Betreten(Held held, Welt welt)
     {
         held.Standort = this;
+        Erkundet = true;
         int random = Falle();
 
         switch (random)
