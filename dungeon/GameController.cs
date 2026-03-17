@@ -31,7 +31,10 @@ public class GameController
             var key = Console.ReadKey(true).Key;
 
             if (key == ConsoleKey.Q)
-                break;
+            {
+                Environment.Exit(0);
+            }
+                
 
             ARaum next = null;
 
