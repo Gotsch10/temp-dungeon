@@ -34,35 +34,24 @@ public class GameController
             {
                 Environment.Exit(0);
             }
-                
-
-            ARaum next = null;
+            
 
             if (key == ConsoleKey.W)
             {
-                next = _held.Standort.Norden;
+                _held.Move(IMoveable.ERichtung.EForward);
             }
             else if (key == ConsoleKey.S)
             {
-                next = _held.Standort.Süden;
+                _held.Move(IMoveable.ERichtung.EBackward);
             }
             else if (key == ConsoleKey.A)
             {
-                next = _held.Standort.Westen;
+                _held.Move(IMoveable.ERichtung.ELeft);
             }
             else if (key == ConsoleKey.D)
             {
-                next = _held.Standort.Osten;
+                _held.Move(IMoveable.ERichtung.ERight);
             }
-
-            if (next == null)
-            {
-                Console.WriteLine("Dort kannst du nicht hin.");
-                Thread.Sleep(1000);
-                continue;
-            }
-
-            next.Betreten(_held, _welt);
             
             Thread.Sleep(2500);
         }

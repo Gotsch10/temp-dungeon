@@ -51,6 +51,7 @@ public class Held : IMoveable
         if (next == null)
         {
             Console.WriteLine("Dort kannst du nicht hin.");
+            Thread.Sleep(1000);
             return;
         }
 
