@@ -63,11 +63,8 @@ public class GameController
             }
 
             next.Betreten(_held, _welt);
-
-            if (!_welt.Zielerreicht && _held.Health > 0)
-            {
-                Thread.Sleep(2000);
-            }
+            
+            Thread.Sleep(2500);
         }
 
         Console.Clear();
