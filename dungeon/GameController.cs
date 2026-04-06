@@ -10,7 +10,51 @@ public class GameController
     public GameController(string heldenName, string weltName)
     {
         _held = new Held(heldenName);
-        _welt = new Welt(weltName);
+
+        Console.Clear();
+        Console.WriteLine("Map auswählen:");
+        Console.WriteLine("1 = Vorgebaute Map");
+        Console.WriteLine("2 = Random Map");
+        Console.Write(">> ");
+
+        string mapAuswahl = Console.ReadLine();
+
+        if (mapAuswahl == "1")
+        {
+            Console.Clear();
+            Console.WriteLine("Welche Welt willst du?");
+            Console.WriteLine("1 = level1");
+            Console.WriteLine("2 = level2");
+            Console.WriteLine("3 = level3");
+            Console.Write(">> ");
+
+            string weltAuswahl = Console.ReadLine();
+            string dateiPfad;
+
+            if (weltAuswahl == "1")
+            {
+                dateiPfad = "C:\\Users\\Gotsc\\RiderProjects\\dungeon-teil-1-Gotsch10\\dungeon\\level1.txt";
+            }
+            else if (weltAuswahl == "2")
+            {
+                dateiPfad = "C:\\Users\\Gotsc\\RiderProjects\\dungeon-teil-1-Gotsch10\\dungeon\\level2.txt";
+            }
+            else if (weltAuswahl == "3")
+            {
+                dateiPfad = "C:\\Users\\Gotsc\\RiderProjects\\dungeon-teil-1-Gotsch10\\dungeon\\level3.txt";
+            }
+            else
+            {
+                dateiPfad = "C:\\Users\\Gotsc\\RiderProjects\\dungeon-teil-1-Gotsch10\\dungeon\\level1.txt";
+            }
+
+            _welt = new Welt(weltName, dateiPfad);
+        }
+        else
+        {
+            _welt = new Welt(weltName);
+        }
+
         _welt.Enter(_held);
     }
 
@@ -31,29 +75,40 @@ public class GameController
             var key = Console.ReadKey(true).Key;
 
             if (key == ConsoleKey.Q)
-            {
-                Environment.Exit(0);
-            }
-            
+                break;
 
-            if (key == ConsoleKey.W || key == ConsoleKey.UpArrow)
+            ARaum next = null;
+
+            if (key == ConsoleKey.W)
             {
-                _held.Move(IMoveable.ERichtung.EForward);
+                next = _held.Standort.Norden;
             }
-            else if (key == ConsoleKey.S || key == ConsoleKey.DownArrow)
+            else if (key == ConsoleKey.S)
             {
-                _held.Move(IMoveable.ERichtung.EBackward);
+                next = _held.Standort.Süden;
             }
-            else if (key == ConsoleKey.A || key == ConsoleKey.LeftArrow)
+            else if (key == ConsoleKey.A)
             {
-                _held.Move(IMoveable.ERichtung.ELeft);
+                next = _held.Standort.Westen;
             }
-            else if (key == ConsoleKey.D || key == ConsoleKey.RightArrow)
+            else if (key == ConsoleKey.D)
             {
-                _held.Move(IMoveable.ERichtung.ERight);
+                next = _held.Standort.Osten;
             }
-            
-            Thread.Sleep(2500);
+
+            if (next == null)
+            {
+                Console.WriteLine("Dort kannst du nicht hin.");
+                Thread.Sleep(1000);
+                continue;
+            }
+
+            next.Betreten(_held, _welt);
+
+            if (!_welt.Zielerreicht && _held.Health > 0)
+            {
+                Thread.Sleep(2000);
+            }
         }
 
         Console.Clear();
