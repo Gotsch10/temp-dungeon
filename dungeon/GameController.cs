@@ -36,19 +36,19 @@ public class GameController
             }
             
 
-            if (key == ConsoleKey.W)
+            if (key == ConsoleKey.W || key == ConsoleKey.UpArrow)
             {
                 _held.Move(IMoveable.ERichtung.EForward);
             }
-            else if (key == ConsoleKey.S)
+            else if (key == ConsoleKey.S || key == ConsoleKey.DownArrow)
             {
                 _held.Move(IMoveable.ERichtung.EBackward);
             }
-            else if (key == ConsoleKey.A)
+            else if (key == ConsoleKey.A || key == ConsoleKey.LeftArrow)
             {
                 _held.Move(IMoveable.ERichtung.ELeft);
             }
-            else if (key == ConsoleKey.D)
+            else if (key == ConsoleKey.D || key == ConsoleKey.RightArrow)
             {
                 _held.Move(IMoveable.ERichtung.ERight);
             }

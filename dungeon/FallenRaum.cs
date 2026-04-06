@@ -7,7 +7,7 @@ public class FallenRaum : ARaum
     public virtual int Falle()
     {
         Random rnd = new Random();
-        int random = rnd.Next(1, 10);
+        int random = rnd.Next(1, 11);
         return random;
     }
 
